@@ -73,8 +73,8 @@ jobs:
         run: cd jars && mkdir artifacts && mv ./*.jar ./artifacts/ && ls
         
       - name: Upload everything.
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Jar Files
-          path: jar/artifacts/
+          path: jar/artifacts
           

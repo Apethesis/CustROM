@@ -631,7 +631,13 @@ do
             end
 
             if c == "" then return expected(pos, c, "']'") end
-            if c == "]" then return empty_json_array, pos + 1 end
+            if c == "]" then
+                if opts.parse_empty_array ~= false then
+                    return empty_json_array, pos + 1
+                else
+                    return {}, pos + 1
+                end
+            end
 
             while true do
                 n, arr[n], pos = n + 1, decode_impl(str, pos, opts)
@@ -677,7 +683,8 @@ do
 
         if options then
             field(options, "nbt_style", "boolean", "nil")
-            field(options, "nbt_style", "boolean", "nil")
+            field(options, "parse_null", "boolean", "nil")
+            field(options, "parse_empty_array", "boolean", "nil")
         else
             options = {}
         end

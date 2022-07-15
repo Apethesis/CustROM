@@ -35,22 +35,22 @@ jobs:
          cp -R ./../../../../../rom ./rom
          cp -R ./../../../../../bios.lua ./bios.lua
          cd ./../../../../.. && ls
-         cd ./jars/cc-tweaked-1.15.2-1.97.1.jar.dir/assets/computercraft/lua/
+         cd ./jars/cc-tweaked-1.15.2-1.97.1.jar.dir/data/computercraft/lua/
          rm -r ./rom && rm bios.lua
          cp -R ./../../../../../rom ./rom
          cp -R ./../../../../../bios.lua ./bios.lua
          cd ./../../../../.. && ls
-         cd ./jars/cc-tweaked-1.16.5-1.100.8.jar.dir/assets/computercraft/lua/
+         cd ./jars/cc-tweaked-1.16.5-1.100.8.jar.dir/data/computercraft/lua/
          rm -r ./rom && rm bios.lua
          cp -R ./../../../../../rom ./rom
          cp -R ./../../../../../bios.lua ./bios.lua
          cd ./../../../../.. && ls
-         cd ./jars/cc-tweaked-1.17.1-1.100.4.jar.dir/assets/computercraft/lua/
+         cd ./jars/cc-tweaked-1.17.1-1.100.4.jar.dir/data/computercraft/lua/
          rm -r ./rom && rm bios.lua
          cp -R ./../../../../../rom ./rom
          cp -R ./../../../../../bios.lua ./bios.lua
          cd ./../../../../.. && ls
-         cd ./jars/cc-tweaked-1.18.2-1.100.8.jar.dir/assets/computercraft/lua/
+         cd ./jars/cc-tweaked-1.18.2-1.100.8.jar.dir/data/computercraft/lua/
          rm -r ./rom && rm bios.lua
          cp -R ./../../../../../rom ./rom
          cp -R ./../../../../../bios.lua ./bios.lua

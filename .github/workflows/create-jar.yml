@@ -17,32 +17,32 @@ jobs:
 
       - name: Remove the default ROM from all of them and add in CustROM
         run: |
-        cd ./jars/cc-tweaked-1.12.2-1.89.2.jar.dir/assets/computercraft/lua/
-        rm -r -v !("treasure")
-        cp -R ./../../../../../rom ./rom
-        cp -R ./../../../../../bios.lua ./bios.lua
-        cd ./jars/cc-tweaked-1.13.2-1.83.1.jar.dir/data/computercraft/lua/
-        rm -r -v !("treasure")
-        cp -R ./../../../../../rom ./rom
-        cp -R ./../../../../../bios.lua ./bios.lua
-        cd ./jars/cc-tweaked-1.14.4-1.89.2.jar.dir/data/computercraft/lua/
-        rm -r -v !("treasure")
-        cp -R ./../../../../../rom ./rom
-        cp -R ./../../../../../bios.lua ./bios.lua
-        cd ./jars/cc-tweaked-1.15.2-1.97.1.jar.dir/assets/computercraft/lua/
-        rm -r
-        cp -R ./../../../../../rom ./rom
-        cp -R ./../../../../../bios.lua ./bios.lua
-        cd ./jars/cc-tweaked-1.16.5-1.100.8.jar.dir/assets/computercraft/lua/
-        rm -r
-        cp -R ./../../../../../rom ./rom
-        cp -R ./../../../../../bios.lua ./bios.lua
-        cd ./jars/cc-tweaked-1.17.1-1.100.4.jar.dir/assets/computercraft/lua/
-        rm -r
-        cp -R ./../../../../../rom ./rom
-        cp -R ./../../../../../bios.lua ./bios.lua
-        cd ./jars/cc-tweaked-1.18.2-1.100.8.jar.dir/assets/computercraft/lua/
-        rm -r
-        cp -R ./../../../../../rom ./rom
-        cp -R ./../../../../../bios.lua ./bios.lua
+         cd ./jars/cc-tweaked-1.12.2-1.89.2.jar.dir/assets/computercraft/lua/
+         rm -r -v !("treasure")
+         cp -R ./../../../../../rom ./rom
+         cp -R ./../../../../../bios.lua ./bios.lua
+         cd ./jars/cc-tweaked-1.13.2-1.83.1.jar.dir/data/computercraft/lua/
+         rm -r -v !("treasure")
+         cp -R ./../../../../../rom ./rom
+         cp -R ./../../../../../bios.lua ./bios.lua
+         cd ./jars/cc-tweaked-1.14.4-1.89.2.jar.dir/data/computercraft/lua/
+         rm -r -v !("treasure")
+         cp -R ./../../../../../rom ./rom
+         cp -R ./../../../../../bios.lua ./bios.lua
+         cd ./jars/cc-tweaked-1.15.2-1.97.1.jar.dir/assets/computercraft/lua/
+         rm -r
+         cp -R ./../../../../../rom ./rom
+         cp -R ./../../../../../bios.lua ./bios.lua
+         cd ./jars/cc-tweaked-1.16.5-1.100.8.jar.dir/assets/computercraft/lua/
+         rm -r
+         cp -R ./../../../../../rom ./rom
+         cp -R ./../../../../../bios.lua ./bios.lua
+         cd ./jars/cc-tweaked-1.17.1-1.100.4.jar.dir/assets/computercraft/lua/
+         rm -r
+         cp -R ./../../../../../rom ./rom
+         cp -R ./../../../../../bios.lua ./bios.lua
+         cd ./jars/cc-tweaked-1.18.2-1.100.8.jar.dir/assets/computercraft/lua/
+         rm -r
+         cp -R ./../../../../../rom ./rom
+         cp -R ./../../../../../bios.lua ./bios.lua
 

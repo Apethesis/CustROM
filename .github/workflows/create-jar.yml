@@ -1,16 +1,14 @@
 name: Create Jar Files
-on:
-  push:
-    branches: ["master"]
-  workflow_dispatch:
+on: [push]
 
 
 jobs:
   create:
     runs-on: ubuntu-latest
     steps:
-      uses: actions/checkout@v3
-
+      - name: Get repo files
+        uses: actions/checkout@v3
+        
       - name: List all files
         run: ls
 

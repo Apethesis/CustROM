@@ -75,5 +75,5 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: jar-files
-          path: jars/artifacts/
+          path: jars/artifacts/*
           

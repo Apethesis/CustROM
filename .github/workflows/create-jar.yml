@@ -55,6 +55,8 @@ jobs:
          cp -R ./../../../../../rom ./rom
          cp -R ./../../../../../bios.lua ./bios.lua
          cd ./../../../..        
+         
+      - run: ls
       - name: Remove all jar files and compress the folders into jar files
         run: |
          cd jars

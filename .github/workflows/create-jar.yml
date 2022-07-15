@@ -72,9 +72,8 @@ jobs:
       - name: Move all jar files into artifact folder and finish.
         run: cd jars && mkdir artifacts && mv ./*.jar ./artifacts/ && ls
         
-      - name: Upload everything.
-        uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v3
         with:
           name: jar-files
-          path: ~/jar/artifacts/*
+          path: artifacts/
           

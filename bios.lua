@@ -676,9 +676,6 @@ end
 local function loadAPIC(_sName)
     local sName = fs.getName(_sName):gsub("%.lua$","")
     local rq = dofile(_sName)
-    if type(rq) ~= "table" then
-        rq = { rq }
-    end
     _G[sName] = rq
     return true
 end

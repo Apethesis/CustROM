@@ -169,8 +169,7 @@ else
     	win = window.create(term.current(), 1, 1, xs, ys)
     	oldTerm = term.redirect(win)
 	end
-	if not fs.exists("ButtonH") then shell.run("pastebin get LTDZZZEJ ButtonH") end
-	local b = require("ButtonH").terminal
+	local b = buttonh.terminal
     local pocketpc = {26,20}
     local standart = {51,19}
     local monitor = {7,5}

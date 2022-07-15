@@ -59,13 +59,13 @@ jobs:
         run: |
          cd jars
          rm *.jar
-         cd cc-tweaked-1.12.2-1.89.2.jar.dir && zip -r cc-tweaked-1.12.2-1.89.2.jar * && mv ./cc-tweaked-1.12.2-1.89.2.jar ./../cc-tweaked-1.12.2-1.89.2-custrom.jar
-         cd cc-tweaked-1.13.2-1.83.1.jar.dir && zip -r cc-tweaked-1.13.2-1.83.1.jar * && mv ./cc-tweaked-1.13.2-1.83.1.jar ./../cc-tweaked-1.13.2-1.83.1-custrom.jar
-         cd cc-tweaked-1.14.4-1.89.2.jar.dir && zip -r cc-tweaked-1.14.4-1.89.2.jar * && mv ./cc-tweaked-1.14.4-1.89.2.jar ./../cc-tweaked-1.14.4-1.89.2-custrom.jar
-         cd cc-tweaked-1.15.2-1.97.1.jar.dir && zip -r cc-tweaked-1.15.2-1.97.1.jar * && mv ./cc-tweaked-1.15.2-1.97.1.jar ./../cc-tweaked-1.15.2-1.97.1-custrom.jar
-         cd cc-tweaked-1.16.5-1.100.8.jar.dir && zip -r cc-tweaked-1.16.5-1.100.8.jar * && mv ./cc-tweaked-1.16.5-1.100.8.jar ./../cc-tweaked-1.16.5-1.100.8-custrom.jar
-         cd cc-tweaked-1.17.1-1.100.4.jar.dir && zip -r cc-tweaked-1.17.1-1.100.4.jar * && mv ./cc-tweaked-1.17.1-1.100.4.jar ./../cc-tweaked-1.17.1-1.100.4-custrom.jar
-         cd cc-tweaked-1.18.2-1.100.8.jar.dir && zip -r cc-tweaked-1.18.2-1.100.8.jar * && mv ./cc-tweaked-1.18.2-1.100.8.jar ./../cc-tweaked-1.18.2-1.100.8-custrom.jar
+         cd cc-tweaked-1.12.2-1.89.2.jar.dir && zip -r cc-tweaked-1.12.2-1.89.2.jar * && mv ./cc-tweaked-1.12.2-1.89.2.jar ../cc-tweaked-1.12.2-1.89.2-custrom.jar
+         cd cc-tweaked-1.13.2-1.83.1.jar.dir && zip -r cc-tweaked-1.13.2-1.83.1.jar * && mv ./cc-tweaked-1.13.2-1.83.1.jar ../cc-tweaked-1.13.2-1.83.1-custrom.jar
+         cd cc-tweaked-1.14.4-1.89.2.jar.dir && zip -r cc-tweaked-1.14.4-1.89.2.jar * && mv ./cc-tweaked-1.14.4-1.89.2.jar ../cc-tweaked-1.14.4-1.89.2-custrom.jar
+         cd cc-tweaked-1.15.2-1.97.1.jar.dir && zip -r cc-tweaked-1.15.2-1.97.1.jar * && mv ./cc-tweaked-1.15.2-1.97.1.jar ../cc-tweaked-1.15.2-1.97.1-custrom.jar
+         cd cc-tweaked-1.16.5-1.100.8.jar.dir && zip -r cc-tweaked-1.16.5-1.100.8.jar * && mv ./cc-tweaked-1.16.5-1.100.8.jar ../cc-tweaked-1.16.5-1.100.8-custrom.jar
+         cd cc-tweaked-1.17.1-1.100.4.jar.dir && zip -r cc-tweaked-1.17.1-1.100.4.jar * && mv ./cc-tweaked-1.17.1-1.100.4.jar ../cc-tweaked-1.17.1-1.100.4-custrom.jar
+         cd cc-tweaked-1.18.2-1.100.8.jar.dir && zip -r cc-tweaked-1.18.2-1.100.8.jar * && mv ./cc-tweaked-1.18.2-1.100.8.jar ../cc-tweaked-1.18.2-1.100.8-custrom.jar
       
       - name: Move all jar files into artifact folder and finish.
         run: cd .. && mkdir artifacts && mv ./*.jar ./artifacts/

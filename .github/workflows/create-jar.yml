@@ -76,5 +76,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Jar Files
-          path: ./artifacts
+          path: ./artifacts/*
           

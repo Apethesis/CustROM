@@ -9,8 +9,7 @@ jobs:
       - name: Get repo files
         uses: actions/checkout@v3
         
-      - name: List all files
-        run: ls
+
 
       - name: Extract all jar files
         run: |
@@ -55,8 +54,9 @@ jobs:
          cp -R ./../../../../../rom ./rom
          cp -R ./../../../../../bios.lua ./bios.lua
          cd ./../../../..        
-         
-      - run: ls
+      - name: List all files
+        run: ls
+        
       - name: Remove all jar files and compress the folders into jar files
         run: |
          cd jars

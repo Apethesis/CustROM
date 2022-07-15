@@ -70,7 +70,7 @@ jobs:
          cd cc-tweaked-1.18.2-1.100.8.jar.dir && zip -r cc-tweaked-1.18.2-1.100.8.jar * && mv cc-tweaked-1.18.2-1.100.8.jar ../cc-tweaked-1.18.2-1.100.8-custrom.jar && cd ..
       
       - name: Move all jar files into artifact folder and finish.
-        run: mkdir artifacts && mv ./*.jar ./artifacts/
+        run: ls && mkdir artifacts && mv ./*.jar ./artifacts/
         
       - name: Upload everything.
         uses: actions/upload-artifact@v2

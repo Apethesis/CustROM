@@ -13,7 +13,10 @@ jobs:
         run: ls
 
       - name: Extract all jar files
-        run: for file in *.jar; do unzip -d $file.dir $file; done
+        run: |
+         cd jars
+         for file in *.jar; do unzip -d $file.dir $file; done
+         cd ..
 
       - name: Remove the default ROM from all of them and add in CustROM
         run: |

@@ -31,7 +31,7 @@ local tProgramStack = {}
 local shell = {} --- @export
 local function createShellEnv(dir)
     local env = { shell = shell, multishell = multishell }
-    env.require, env.package = make_package(env, dir)
+    -- env.require, env.package = make_package(env, dir)
     return env
 end
 

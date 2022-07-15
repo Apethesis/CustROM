@@ -673,6 +673,13 @@ local function unloadAPI(_sName)
     end
 end
 
+local function loadAPIC(_sName)
+    local sName = fs.getName(_sName)
+    _sName = _sName:gsub("%.lua$","")
+    _G[sName] = require(_sName)
+    return true
+end
+
 function os.sleep(nTime)
     sleep(nTime)
 end
@@ -946,7 +953,7 @@ if fs.isDir("rom/community/apis") then
         if string.sub(sFile, 1, 1) ~= "." then
             local sPath = fs.combine("rom/community/apis", sFile)
             if not fs.isDir(sPath) then
-                if not loadAPI(sPath) then
+                if not loadAPIC(sPath) then
                     bAPIError = true
                 end
             end

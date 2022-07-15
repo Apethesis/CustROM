@@ -75,5 +75,11 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: jar-files
-          path: jars/artifacts/*
-          
+          path: |
+            jar/artifacts/cc-tweaked-1.12.2-1.89.2-custrom.jar
+            jar/artifacts/cc-tweaked-1.13.2-1.83.1-custrom.jar
+            jar/artifacts/cc-tweaked-1.14.4-1.89.2-custrom.jar
+            jar/artifacts/cc-tweaked-1.15.2-1.97.1-custrom.jar
+            jar/artifacts/cc-tweaked-1.16.5-1.100.8-custrom.jar
+            jar/artifacts/cc-tweaked-1.17.1-1.100.4-custrom.jar
+            jar/artifacts/cc-tweaked-1.18.2-1.100.8-custrom.jar          

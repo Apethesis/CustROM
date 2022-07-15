@@ -22,6 +22,7 @@ end
 if http then
     sPath = sPath .. ":/rom/programs/http"
 end
+sPath = sPath .. ":/rom/community/programs"
 shell.setPath(sPath)
 help.setPath("/rom/help")
 

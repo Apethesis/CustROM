@@ -625,7 +625,7 @@ function os.run(_tEnv, _sPath, ...)
 end
 
 local tAPIsLoading = {}
-function os.loadAPI(_sPath)
+local function loadAPI(_sPath)
     expect(1, _sPath, "string")
     local sName = fs.getName(_sPath)
     if sName:sub(-4) == ".lua" then
@@ -663,7 +663,7 @@ function os.loadAPI(_sPath)
     return true
 end
 
-function os.unloadAPI(_sName)
+local function unloadAPI(_sName)
     expect(1, _sName, "string")
     if _sName ~= "_G" and type(_G[_sName]) == "table" then
         _G[_sName] = nil
@@ -930,8 +930,22 @@ for _, sFile in ipairs(tApis) do
     if string.sub(sFile, 1, 1) ~= "." then
         local sPath = fs.combine("rom/apis", sFile)
         if not fs.isDir(sPath) then
-            if not os.loadAPI(sPath) then
+            if not loadAPI(sPath) then
                 bAPIError = true
+            end
+        end
+    end
+end
+
+if fs.isDir("rom/community/apis") then
+    local tApis = fs.list("rom/community/apis")
+    for _, sFile in ipairs(tApis) do
+        if string.sub(sFile, 1, 1) ~= "." then
+            local sPath = fs.combine("rom/community/apis", sFile)
+            if not fs.isDir(sPath) then
+                if not loadAPI(sPath) then
+                    bAPIError = true
+                end
             end
         end
     end
@@ -944,7 +958,7 @@ if turtle and fs.isDir("rom/apis/turtle") then
         if string.sub(sFile, 1, 1) ~= "." then
             local sPath = fs.combine("rom/apis/turtle", sFile)
             if not fs.isDir(sPath) then
-                if not os.loadAPI(sPath) then
+                if not loadAPI(sPath) then
                     bAPIError = true
                 end
             end
@@ -959,7 +973,7 @@ if pocket and fs.isDir("rom/apis/pocket") then
         if string.sub(sFile, 1, 1) ~= "." then
             local sPath = fs.combine("rom/apis/pocket", sFile)
             if not fs.isDir(sPath) then
-                if not os.loadAPI(sPath) then
+                if not loadAPI(sPath) then
                     bAPIError = true
                 end
             end
@@ -969,7 +983,7 @@ end
 
 if commands and fs.isDir("rom/apis/command") then
     -- Load command APIs
-    if os.loadAPI("rom/apis/command/commands.lua") then
+    if loadAPI("rom/apis/command/commands.lua") then
         -- Add a special case-insensitive metatable to the commands api
         local tCaseInsensitiveMetatable = {
             __index = function(table, key)

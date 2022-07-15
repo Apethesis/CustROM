@@ -9,16 +9,16 @@ jobs:
   create:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      uses: actions/checkout@v3
 
       - name: List all files
-      - run: ls
-      
+        run: ls
+
       - name: Extract all jar files
-      - run: for file in *.jar; do unzip -d $file.dir $file; done
+        run: for file in *.jar; do unzip -d $file.dir $file; done
 
       - name: Remove the default ROM from all of them and add in CustROM
-      - run: |
+        run: |
         cd ./jars/cc-tweaked-1.12.2-1.89.2.jar.dir/assets/computercraft/lua/
         rm -r -v !("treasure")
         cp -R ./../../../../../rom ./rom

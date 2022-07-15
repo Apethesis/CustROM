@@ -57,7 +57,8 @@ jobs:
          cd ./../../../..        
       - name: Remove all jar files and compress the folders into jar files
         run: |
-         rm ./*.jar
+         cd jars
+         rm *.jar
          cd cc-tweaked-1.12.2-1.89.2.jar.dir && zip -r cc-tweaked-1.12.2-1.89.2.jar * && mv ./cc-tweaked-1.12.2-1.89.2.jar ./../cc-tweaked-1.12.2-1.89.2-custrom.jar
          cd cc-tweaked-1.13.2-1.83.1.jar.dir && zip -r cc-tweaked-1.13.2-1.83.1.jar * && mv ./cc-tweaked-1.13.2-1.83.1.jar ./../cc-tweaked-1.13.2-1.83.1-custrom.jar
          cd cc-tweaked-1.14.4-1.89.2.jar.dir && zip -r cc-tweaked-1.14.4-1.89.2.jar * && mv ./cc-tweaked-1.14.4-1.89.2.jar ./../cc-tweaked-1.14.4-1.89.2-custrom.jar

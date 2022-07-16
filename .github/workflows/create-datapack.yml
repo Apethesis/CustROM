@@ -9,8 +9,11 @@ jobs:
       - name: Get repo files
         uses: actions/checkout@v3
 
-      - name: LS to figure out where i am
-        run: ls
+      - name: Create directories
+        run: |
+         mkdir $GITHUB_WORKSPACE/datapack/data
+         mkdir $GITHUB_WORKSPACE/datapack/data/computercraft
+         mkdir $GITHUB_WORKSPACE/datapack/data/computercraft/lua
 
       - name: Add CustROM to datapack
         run: |

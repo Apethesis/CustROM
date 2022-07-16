@@ -20,12 +20,9 @@ jobs:
           cp $GITHUB_WORKSPACE/bios.lua $GITHUB_WORKSPACE/datapack/data/computercraft/lua/bios.lua
           cp -r $GITHUB_WORKSPACE/rom $GITHUB_WORKSPACE/datapack/data/computercraft/lua/rom
 
-      - name: Zip up the datapack
-        run: |
-         cd datapack
-         zip -r custrom.zip *
-                
-      - uses: actions/upload-artifact@v3
+              
+      - name: Upload zip file       
+        uses: actions/upload-artifact@v3
         with:
           name: datapack
-          path: datapack/custrom.zip
+          path: datapack/*

@@ -42,9 +42,9 @@ jobs:
         run: cd jars && mkdir artifacts && mv ./*.jar ./artifacts/ && ls && cd ..
         
       - name: LS Again
-        run: ls
+        run: ls $GITHUB_WORKSPACE/jar/artifacts/
         
       - uses: actions/upload-artifact@v3
         with:
           name: jar-files
-          path: $GITHUB_WORKSPACE/jar/artifacts
+          path: $GITHUB_WORKSPACE/jar/artifacts/*

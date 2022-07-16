@@ -181,6 +181,18 @@ function sleep(nTime)
         local _, param = os.pullEvent("timer")
     until param == timer
 end
+-- Add fs.attributes if it doesnt exist (1.13)
+if not fs.attributes then
+    function fs.attributes(fPath)
+        local tbl = {}
+        tbl.created = 0
+        tbl.isDir = fs.isDir(fPath)
+        tbl.isReadOnly = fs.isReadOnly(fPath)
+        tbl.modification = 0
+        tbl.modified = 0
+        tbl.size = fs.getSize(fPath)
+    end
+end
 
 function write(sText)
     expect(1, sText, "string", "number")

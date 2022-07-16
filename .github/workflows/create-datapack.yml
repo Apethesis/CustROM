@@ -1,0 +1,25 @@
+name: Create Datapack
+on: [push]
+
+
+jobs:
+  createjars:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repo files
+        uses: actions/checkout@v3
+
+      - name: Add CustROM to datapack
+        run: |
+          cp ./bios.lua ./datapack/data/computercraft/lua/bios.lua
+          cp -r ./rom ./datapack/data/computercraft/lua/rom
+
+      - name: Zip up the datapack
+        run: |
+         cd datapack
+         zip -r custrom.zip *
+                
+      - uses: actions/upload-artifact@v3
+        with:
+          name: datapack
+          path: datapack/custrom.zip

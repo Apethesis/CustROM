@@ -16,7 +16,7 @@ jobs:
          cd ..
 
       - name: Remove the default ROM from all of them and add in CustROM
-        run: |https://github.com/Apethesis/CustROM/actions/runs/2680141349
+        run: |
          cd ./jars/cc-tweaked-1.12.2-1.89.2.jar.dir/assets/computercraft/lua/
          rm -r ./rom && rm bios.lua
          cp -R ./../../../../../rom ./rom

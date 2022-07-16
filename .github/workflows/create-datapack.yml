@@ -9,6 +9,9 @@ jobs:
       - name: Get repo files
         uses: actions/checkout@v3
 
+      - name: LS to figure out where i am
+       run: ls
+
       - name: Add CustROM to datapack
         run: |
           cp ./bios.lua ./datapack/data/computercraft/lua/bios.lua

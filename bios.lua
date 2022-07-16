@@ -5,8 +5,57 @@
 -- has not been defined at this point.
 local expect
 
-table.unpack = unpack
-table.pack = function( ... ) return { n = select( "#", ... ), ... } end
+if not table.unpack then table.unpack = unpack end
+if not table.pack then table.pack = function( ... ) return { n = select( "#", ... ), ... } end end
+if not load then
+    function load( x, name, mode, env )
+        if type( x ) ~= "string" and type( x ) ~= "function" then
+            error( "bad argument #1 (expected string or function, got " .. type( x ) .. ")", 2 ) 
+        end
+        if name ~= nil and type( name ) ~= "string" then
+            error( "bad argument #2 (expected string, got " .. type( name ) .. ")", 2 ) 
+        end
+        if mode ~= nil and type( mode ) ~= "string" then
+            error( "bad argument #3 (expected string, got " .. type( mode ) .. ")", 2 ) 
+        end
+        if env ~= nil and type( env) ~= "table" then
+            error( "bad argument #4 (expected table, got " .. type( env ) .. ")", 2 ) 
+        end
+        if mode ~= nil and mode ~= "t" and debug == nil then
+            error( "Binary chunk loading prohibited", 2 )
+        end
+        local ok, p1, p2 = pcall( function()        
+            if type(x) == "string" then
+                local result, err = nativeloadstring( x, name )
+                if result then
+                    if env then
+                        env._ENV = env
+                        nativesetfenv( result, env )
+                    end
+                    return result
+                else
+                    return nil, err
+                end
+            else
+                local result, err = nativeload( x, name )
+                if result then
+                    if env then
+                        env._ENV = env
+                        nativesetfenv( result, env )
+                    end
+                    return result
+                else
+                    return nil, err
+                end
+            end
+        end )
+        if ok then
+            return p1, p2
+        else
+            error( p1, 2 )
+        end        
+    end    
+end
 
 do
     local h = fs.open("rom/modules/main/cc/expect.lua", "r")

@@ -26,6 +26,14 @@ local function prefix(chunkname)
     end
 end
 
+if not table.pack then
+    function table.pack(...)
+        local args = {...}
+        return args
+    end
+end
+            
+
 if _VERSION == "Lua 5.1" then
     -- If we're on Lua 5.1, install parts of the Lua 5.2/5.3 API so that programs can be written against it
     local type = type

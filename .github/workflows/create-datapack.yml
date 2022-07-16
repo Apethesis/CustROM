@@ -14,8 +14,8 @@ jobs:
 
       - name: Add CustROM to datapack
         run: |
-          cp ./bios.lua ./datapack/data/computercraft/lua/bios.lua
-          cp -r ./rom ./datapack/data/computercraft/lua/rom
+          cp /bios.lua /datapack/data/computercraft/lua/bios.lua
+          cp -r ./rom /datapack/data/computercraft/lua/rom
 
       - name: Zip up the datapack
         run: |

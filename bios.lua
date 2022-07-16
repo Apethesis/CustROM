@@ -5,6 +5,9 @@
 -- has not been defined at this point.
 local expect
 
+table.unpack = unpack
+table.pack = function( ... ) return { n = select( "#", ... ), ... } end
+
 do
     local h = fs.open("rom/modules/main/cc/expect.lua", "r")
     local f, err = (_VERSION == "Lua 5.1" and loadstring or load)(h.readAll(), "@expect.lua")
@@ -25,14 +28,6 @@ local function prefix(chunkname)
         return "=" .. chunkname
     end
 end
-
-if not table.pack then
-    function table.pack(...)
-        local args = {...}
-        return args
-    end
-end
-            
 
 if _VERSION == "Lua 5.1" then
     -- If we're on Lua 5.1, install parts of the Lua 5.2/5.3 API so that programs can be written against it

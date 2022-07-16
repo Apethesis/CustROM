@@ -84,6 +84,19 @@ if _VERSION == "Lua 5.1" then
         loadstring = function(string, chunkname) return nativeloadstring(string, prefix(chunkname)) end
 
         -- Inject a stub for the old bit library
+        if bit and not bit32 then
+            local nativebit = bit
+            bit32 = {}
+            bit32.arshift = nativebit.brshift
+            bit32.band = nativebit.band
+            bit32.bnot = nativebit.bnot
+            bit32.bor = nativebit.bor
+            bit32.btest = function( a, b ) return nativebit.band(a,b) ~= 0 end
+            bit32.bxor = nativebit.bxor
+            bit32.lshift = nativebit.blshift
+            bit32.rshift = nativebit.blogic_rshift
+    elseif bit32 and not bit and not _CC_DISABLE_LUA51_FEATURES then
+        -- Inject a stub for the old bit library
         _G.bit = {
             bnot = bit32.bnot,
             band = bit32.band,
@@ -93,6 +106,7 @@ if _VERSION == "Lua 5.1" then
             blshift = bit32.lshift,
             blogic_rshift = bit32.rshift,
         }
+    end
     end
 elseif not _CC_DISABLE_LUA51_FEATURES then
     -- Restore old Lua 5.1 functions for compatibility

@@ -47,4 +47,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: jar-files
-          path: $GITHUB_WORKSPACE/jars/artifacts/*
+          path: jars/artifacts/*

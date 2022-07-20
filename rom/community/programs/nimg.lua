@@ -1372,7 +1372,7 @@ else
 				return setmetatable(window.create(terms,1,1,xs,ys),{__index=indexBuffer})
 			end
             local function getButtonH()
-                return require("ButtonH")
+                return buttonh
             end
 			local function downloadPastekage(pasteCode)
 				--pasteges are packages for pastes:

@@ -92,6 +92,7 @@ local function generateFontSize(size,yeld)
                         table.insert(back2, currentBack[2])
                         table.insert(back3, currentBack[3])
                     end
+                    sleep()
                 end
                 table.insert(temp, table.concat(line1))
                 table.insert(temp, table.concat(line2))

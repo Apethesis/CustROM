@@ -1,3 +1,4 @@
+sleep(0)
 -------------------------------------------------------------------------------------
 -- Wojbies API 5.0 - Bigfont - functions to write bigger font using drawing sybols --
 -------------------------------------------------------------------------------------
@@ -92,7 +93,6 @@ local function generateFontSize(size,yeld)
                         table.insert(back2, currentBack[2])
                         table.insert(back3, currentBack[3])
                     end
-                    sleep()
                 end
                 table.insert(temp, table.concat(line1))
                 table.insert(temp, table.concat(line2))

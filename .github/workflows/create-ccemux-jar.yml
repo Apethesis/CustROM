@@ -32,5 +32,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: jar-file
-          path: ccjar/CCEmuX-cct.jar
+          path: CCEmuX-cct.jar
           

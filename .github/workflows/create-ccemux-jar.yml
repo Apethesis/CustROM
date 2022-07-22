@@ -1,0 +1,36 @@
+name: Create CCEmuX jar
+on: [push]
+
+jobs:
+  createjar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repo files
+        uses: actions/checkout@v3
+        
+      - name: Get CCEmuX jar
+        run: wget https://emux.cc/versions/f394e273/CCEmuX-cct.jar
+        
+      - name: Extract jar file
+        run: |
+          mkdir ccjar
+          unzip -d ./ccjar/ CCEmuX-cct.jar
+          
+      - name: Replace default ROM with CustROM
+        run: |
+          cd ./ccjar/
+          cd ./data/computercraft/lua
+          rm -r ./*
+          cp -r ./../../../../rom ./rom
+          cp ./../../../../bios.lua ./bios.lua
+          cd ./../../../
+      
+      - name: Compress files into jar file
+        run: zip -r CCEmuX-cct.jar *
+        
+      - name: Upload everything and finish
+        uses: actions/upload-artifact@v3
+        with:
+          name: jar-file
+          path: ccjar/CCEmuX-cct.jar
+          

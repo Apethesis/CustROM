@@ -4,7 +4,7 @@
 -- available to the BIOS or any APIs. All APIs load this using dofile, but that
 -- has not been defined at this point.
 local expect
-
+table.foreachi = nil
 if not table.unpack then table.unpack = unpack end
 if not table.pack then table.pack = function( ... ) return { n = select( "#", ... ), ... } end end
 if not load then

@@ -27,7 +27,7 @@ jobs:
       
       - name: Compress files into jar file
         run: |
-          rm ./ccjar
+          rmdir ./ccjar
           zip -r CCEmuX-cct.jar *
         
       - name: Upload everything and finish

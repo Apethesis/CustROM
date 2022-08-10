@@ -27,6 +27,11 @@ jobs:
          cp -R ./../../../../../rom ./rom
          cp -R ./../../../../../bios.lua ./bios.lua
          cd ./../../../..
+         cd ./jars/cc-1.7.10-1.75.jar.dir/assets/computercraft/lua/
+         rm -r ./rom && rm bios.lua
+         cp -R ./../../../../../rom ./rom
+         cp -R ./../../../../../bios.lua ./bios.lua
+         cd ./../../../../..
          
       - name: List all files
         run: ls
@@ -37,6 +42,7 @@ jobs:
          rm *.jar
          cd cc-tweaked-1.12.2-1.89.2.jar.dir && zip -r cc-tweaked-1.12.2-1.89.2.jar * && mv cc-tweaked-1.12.2-1.89.2.jar ../cc-tweaked-1.12.2-1.89.2-custrom.jar && cd ..
          cd cc-tweaked-1.13.2-1.83.1.jar.dir && zip -r cc-tweaked-1.13.2-1.83.1.jar * && mv cc-tweaked-1.13.2-1.83.1.jar ../cc-tweaked-1.13.2-1.83.1-custrom.jar && cd ..
+         cd cc-1.7.10-1.75.jar.dir && zip -r cc-1.7.10-1.75.jar * && mv cc-1.7.10-1.75.jar ../cc-1.7.10-1.75-custrom.jar && cd ..
       
       - name: Move all jar files into artifact folder and finish.
         run: cd jars && mkdir artifacts && mv ./*.jar ./artifacts/ && ls && cd ..

@@ -27,7 +27,7 @@ jobs:
          rm -r ./rom && rm bios.lua
          cp -R ./../../../../../rom ./rom
          cp -R ./../../../../../bios.lua ./bios.lua
-         cd ./../../../..
+         cd ./../../../../..
          ls ./jars
          cd ./jars/cc-1.7.10-1.75.jar.dir/assets/computercraft/lua/
          rm -r ./rom && rm bios.lua

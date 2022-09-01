@@ -594,10 +594,9 @@ else
     -- "shell"
     -- Print the header
     term.setBackgroundColor(bgColour)
-    term.setTextColour(promptColour)
-    print(os.version())
-    term.setTextColour(textColour)
-
+    term.setTextColor(promptColour)
+    print("CraftOS 1.8".."-"..string.gsub(string.lower(_VERSION),"%s+","").." (tty"..(multishell.getCurrent() or 1)..")")
+    term.setTextColor(textColour)
     -- Run the startup program
     if parentShell == nil then
         shell.run("/rom/startup.lua")

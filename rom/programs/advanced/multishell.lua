@@ -74,7 +74,7 @@ local function launchProcess(bFocus, tProgramEnv, sProgramPath, ...)
     local tProcess = {}
     tProcess.sTitle = fs.getName(sProgramPath)
     if bShowMenu then
-        tProcess.window = window.create(parentTerm, 1, 2, w, h - 1, false)
+        tProcess.window = window.create(parentTerm, 1, 1, w, h - 1, false)
     else
         tProcess.window = window.create(parentTerm, 1, 1, w, h, false)
     end
@@ -139,39 +139,6 @@ end
 
 local function redrawMenu()
     if bShowMenu then
-        -- Draw menu
-        parentTerm.setCursorPos(1, 1)
-        parentTerm.setBackgroundColor(menuOtherBgColor)
-        parentTerm.clearLine()
-        local nCharCount = 0
-        local nSize = parentTerm.getSize()
-        if nScrollPos ~= 1 then
-            parentTerm.setTextColor(menuOtherTextColor)
-            parentTerm.setBackgroundColor(menuOtherBgColor)
-            parentTerm.write("<")
-            nCharCount = 1
-        end
-        for n = nScrollPos, #tProcesses do
-            if n == nCurrentProcess then
-                parentTerm.setTextColor(menuMainTextColor)
-                parentTerm.setBackgroundColor(menuMainBgColor)
-            else
-                parentTerm.setTextColor(menuOtherTextColor)
-                parentTerm.setBackgroundColor(menuOtherBgColor)
-            end
-            parentTerm.write(" " .. tProcesses[n].sTitle .. " ")
-            nCharCount = nCharCount + #tProcesses[n].sTitle + 2
-        end
-        if nCharCount > nSize then
-            parentTerm.setTextColor(menuOtherTextColor)
-            parentTerm.setBackgroundColor(menuOtherBgColor)
-            parentTerm.setCursorPos(nSize, 1)
-            parentTerm.write(">")
-            bScrollRight = true
-        else
-            bScrollRight = false
-        end
-
         -- Put the cursor back where it should be
         local tProcess = tProcesses[nCurrentProcess]
         if tProcess then
@@ -183,7 +150,7 @@ end
 local function resizeWindows()
     local windowY, windowHeight
     if bShowMenu then
-        windowY = 2
+        windowY = 1
         windowHeight = h - 1
     else
         windowY = 1
@@ -321,6 +288,7 @@ launchProcess(true, {
 }, "/rom/programs/shell.lua", ...)
 
 -- Run processes
+local rdn = false
 while #tProcesses > 0 do
     -- Get the event
     local tEventData = table.pack(os.pullEventRaw())
@@ -334,67 +302,44 @@ while #tProcesses > 0 do
     elseif sEvent == "char" or sEvent == "key" or sEvent == "key_up" or sEvent == "paste" or sEvent == "terminate" then
         -- Keyboard event
         -- Passthrough to current process
-        resumeProcess(nCurrentProcess, table.unpack(tEventData, 1, tEventData.n))
-        if cullProcess(nCurrentProcess) then
-            setMenuVisible(#tProcesses >= 2)
+        if tEventData[2] == keys.rightAlt and sEvent == "key_up" then
+            rdn = false
+        elseif  tEventData[2] == keys.rightAlt and sEvent == "key" then
+            rdn = true
+        elseif sEvent == "key_up" and tEventData[2] == keys.right and rdn and (multishell.getFocus() + 1) <= #tProcesses then
+            selectProcess(multishell.getFocus()+1)
             redrawMenu()
+        elseif sEvent == "key_up" and tEventData[2] == keys.left and rdn and (multishell.getFocus() - 1) >= 1 then
+            selectProcess(multishell.getFocus()-1)
+            redrawMenu()
+        else
+            resumeProcess(nCurrentProcess, table.unpack(tEventData, 1, tEventData.n))
+            if cullProcess(nCurrentProcess) then
+                setMenuVisible(#tProcesses >= 2)
+                redrawMenu()
+            end
         end
 
     elseif sEvent == "mouse_click" then
         -- Click event
         local button, x, y = tEventData[2], tEventData[3], tEventData[4]
-        if bShowMenu and y == 1 then
-            -- Switch process
-            if x == 1 and nScrollPos ~= 1 then
-                nScrollPos = nScrollPos - 1
-                redrawMenu()
-            elseif bScrollRight and x == term.getSize() then
-                nScrollPos = nScrollPos + 1
-                redrawMenu()
-            else
-                local tabStart = 1
-                if nScrollPos ~= 1 then
-                    tabStart = 2
-                end
-                for n = nScrollPos, #tProcesses do
-                    local tabEnd = tabStart + #tProcesses[n].sTitle + 1
-                    if x >= tabStart and x <= tabEnd then
-                        selectProcess(n)
-                        redrawMenu()
-                        break
-                    end
-                    tabStart = tabEnd + 1
-                end
-            end
-        else
-            -- Passthrough to current process
-            resumeProcess(nCurrentProcess, sEvent, button, x, bShowMenu and y - 1 or y)
-            if cullProcess(nCurrentProcess) then
-                setMenuVisible(#tProcesses >= 2)
-                redrawMenu()
-            end
+        
+        -- Passthrough to current process
+        resumeProcess(nCurrentProcess, sEvent, button, x, bShowMenu and y - 1 or y)
+        if cullProcess(nCurrentProcess) then
+            setMenuVisible(#tProcesses >= 2)
+            redrawMenu()
         end
-
     elseif sEvent == "mouse_drag" or sEvent == "mouse_up" or sEvent == "mouse_scroll" then
         -- Other mouse event
         local p1, x, y = tEventData[2], tEventData[3], tEventData[4]
-        if bShowMenu and sEvent == "mouse_scroll" and y == 1 then
-            if p1 == -1 and nScrollPos ~= 1 then
-                nScrollPos = nScrollPos - 1
-                redrawMenu()
-            elseif bScrollRight and p1 == 1 then
-                nScrollPos = nScrollPos + 1
-                redrawMenu()
-            end
-        elseif not (bShowMenu and y == 1) then
-            -- Passthrough to current process
-            resumeProcess(nCurrentProcess, sEvent, p1, x, bShowMenu and y - 1 or y)
-            if cullProcess(nCurrentProcess) then
-                setMenuVisible(#tProcesses >= 2)
-                redrawMenu()
-            end
-        end
         
+        -- Passthrough to current process
+        resumeProcess(nCurrentProcess, sEvent, p1, x, bShowMenu and y - 1 or y)
+        if cullProcess(nCurrentProcess) then
+            setMenuVisible(#tProcesses >= 2)
+            redrawMenu()
+        end
     elseif sEvent == "_CCPC_mobile_keyboard_open" and settings.get("shell.mobile_resize_with_keyboard") then
         -- Resize event
         w, h = parentTerm.getSize(), tEventData[2]

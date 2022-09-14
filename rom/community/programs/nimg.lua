@@ -15,6 +15,7 @@ local keybinds = {
 }
 local openCreateFile = true
 local chars = "0123456789abcdef"
+local buttonh = require("com.buttonh")
 local saveCols, loadCols = {}, {}
 for i = 0, 15 do
   saveCols[2^i] = chars:sub(i + 1, i + 1)

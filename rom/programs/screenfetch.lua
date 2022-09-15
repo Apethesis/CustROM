@@ -150,13 +150,13 @@ ffffffffffffffffffffffff]]
     end
 
     local function ext(retval)
-        if debug ~= nil then table.insert(retval, text("    ", "Debug enabled")) end
-        if http ~= nil then table.insert(retval, text("    ", "HTTP enabled")) 
-        if http.websocket ~= nil then table.insert(retval, text("    ", "CC: Tweaked")) end end
-        if mounter ~= nil then table.insert(retval, text("    ", "CraftOS-PC")) end
-        if term.setGraphicsMode ~= nil then table.insert(retval, text("    ", "CraftOS-PC GFX")) end
-        if term.screenshot ~= nil then table.insert(retval, text("    ", "CraftOS-PC 2")) end
-        if ccemux ~= nil then table.insert(retval, text("    ", "CCEmuX")) end
+        if debug then table.insert(retval, text("    ", "Debug enabled")) end
+        if http then table.insert(retval, text("    ", "HTTP enabled")) 
+        if http.websocket then table.insert(retval, text("    ", "CC: Tweaked")) end end
+        if mounter then table.insert(retval, text("    ", "CraftOS-PC")) end
+        if term.setGraphicsMode then table.insert(retval, text("    ", "CraftOS-PC GFX")) end
+        if term.screenshot then table.insert(retval, text("    ", "CraftOS-PC 2")) end
+        if ccemux then table.insert(retval, text("    ", "CCEmuX")) end
         if fs.exists(".mbs") or fs.exists("rom/.mbs") then table.insert(retval, text("    ", "MBS")) end
         if type(kernel) == "table" then table.insert(retval, text("    ", "CCKernel2")) end
         return retval

@@ -1,4 +1,3 @@
-local args = {...}
 local expect = require("cc.expect")
 
 local function loadAPI(_sPath)
@@ -30,4 +29,4 @@ local function loadAPI(_sPath)
     return tAPI
 end
 
-return loadAPI(args[1])
+return loadAPI

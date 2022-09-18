@@ -1,18 +1,15 @@
---[[- The Disk API allows you to interact with disk drives.
-
-These functions can operate on locally attached or remote disk drives. To use a
-locally attached drive, specify “side” as one of the six sides (e.g. `left`); to
-use a remote disk drive, specify its name as printed when enabling its modem
-(e.g. `drive_0`).
-
-:::tip
-All computers (except command computers), turtles and pocket computers can be
-placed within a disk drive to access it's internal storage like a disk.
-:::
-
-@module disk
-@since 1.2
-]]
+--- The Disk API allows you to interact with disk drives.
+--
+-- These functions can operate on locally attached or remote disk drives. To use
+-- a locally attached drive, specify “side” as one of the six sides
+-- (e.g. `left`); to use a remote disk drive, specify its name as printed when
+-- enabling its modem (e.g. `drive_0`).
+--
+-- **Note:** All computers (except command computers), turtles and pocket
+-- computers can be placed within a disk drive to access it's internal storage
+-- like a disk.
+--
+-- @module disk
 
 local function isDrive(name)
     if type(name) ~= "string" then
@@ -25,7 +22,7 @@ end
 --
 -- @tparam string name The name of the disk drive.
 -- @treturn boolean If something is in the disk drive.
--- @usage disk.isPresent("top")
+-- @usage disk.isPresent(false)
 function isPresent(name)
     if isDrive(name) then
         return peripheral.call(name, "isDiskPresent")
@@ -166,26 +163,9 @@ end
 --
 -- @tparam string name The name of the disk drive.
 -- @treturn string|nil The disk ID, or `nil` if the drive does not contain a floppy disk.
--- @since 1.4
 function getID(name)
     if isDrive(name) then
         return peripheral.call(name, "getDiskID")
     end
     return nil
-end
-
---- Inserts a disk into the drive.
---
--- This function takes one of the following path formats:
--- * A path to a directory to mount as a disk.
--- * A path to an audio file to insert a music disc.
--- * A number to mount a disk with an ID.
--- * A path in the form "treasure:<name>/<program>" to mount a treasure disk if available.
---
--- @tparam string name The name of the disk drive.
--- @tparam string path The path to mount as described above.
-function insertDisk(name, path)
-    if isDrive(name) then
-        peripheral.call(name, "insertDisk", path)
-    end
 end

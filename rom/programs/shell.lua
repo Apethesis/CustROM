@@ -595,7 +595,11 @@ else
     -- Print the header
     term.setBackgroundColor(bgColour)
     term.setTextColor(promptColour)
-    print("CraftOS 1.8".."-"..string.gsub(string.lower(_VERSION),"%s+","").." (tty"..(multishell.getCurrent() or 0)..")")
+    if term.isColor() then
+        print("CraftOS 1.8".."-"..string.gsub(string.lower(_VERSION),"%s+","").." (tty"..(multishell.getCurrent() or 0)..")")
+    else
+        print("CraftOS 1.8".."-"..string.gsub(string.lower(_VERSION),"%s+","").." (tty1)")
+    end
     term.setTextColor(textColour)
     -- Run the startup program
     if parentShell == nil then

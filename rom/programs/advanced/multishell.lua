@@ -83,7 +83,7 @@ local function launchProcess(bFocus, tProgramEnv, sProgramPath, ...)
         if not tProcess.bInteracted then
             term.setCursorBlink(false)
             print("Press any key to continue")
-            os.pullEvent("char")
+            os.pullEvent("key")
         end
     end)
     tProcess.sFilter = nil

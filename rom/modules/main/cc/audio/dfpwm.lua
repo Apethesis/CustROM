@@ -78,7 +78,7 @@ local function make_predictor()
         local next_strength = strength
         if next_strength ~= z then next_strength = next_strength + (current_bit == previous_bit and 1 or -1) end
         if next_strength < STRENGTH_MIN then next_strength = STRENGTH_MIN end
-        sleep()
+        os.queueEvent("hyum") os.pullEvent("hyum")
 
         charge, strength, previous_bit = next_charge, next_strength, current_bit
         return charge

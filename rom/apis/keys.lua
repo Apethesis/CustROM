@@ -1,4 +1,4 @@
-if string.find(string.lower(_HOST),"craftos-pc") then
+if string.match(string.lower(_HOST),"craftos") then
 
 -- Minecraft key code bindings
 -- See http://www.minecraftwiki.net/wiki/Key_codes for more info

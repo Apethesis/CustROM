@@ -8,6 +8,7 @@ custrom = true
 table.foreachi = nil
 if not table.unpack then table.unpack = unpack end
 if not table.pack then table.pack = function( ... ) return { n = select( "#", ... ), ... } end end
+function math.round(num) return math.floor(num + 0.5) end
 if not load then
     function load( x, name, mode, env )
         if type( x ) ~= "string" and type( x ) ~= "function" then

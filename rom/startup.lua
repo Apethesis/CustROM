@@ -264,3 +264,5 @@ if _CCPC_PLUGIN_ERRORS and settings.get("shell.report_plugin_errors") then
         printError("  " .. k .. " - " .. v)
     end
 end
+
+_G.package.path = _G.package.path..settings.get("shell.append_path")

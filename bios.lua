@@ -681,7 +681,7 @@ function dofile(_sFile)
 end
 
 local make_package = dofile("rom/modules/main/cc/require.lua").make
-require, package = make_package(_G, "/")
+require, package = make_package(_G, "/") 
 
 -- Install the rest of the OS api
 function os.run(_tEnv, _sPath, ...)
@@ -1209,6 +1209,12 @@ settings.define("bios.use_cash", {
     default = false,
     description = [[Switch the default shell interpreter to cash, a Bourne-compatible shell. (Beta)]],
     type = "boolean",
+})
+
+settings.define("shell.append_path", {
+    default = "",
+    description = [[A string to append to path, double check before restarting.]],
+    type = "string",
 })
 if term.isColour() then
     settings.define("bios.use_multishell", {

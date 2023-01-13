@@ -53,7 +53,7 @@ local function trim(s) return string.match(s, '^()%s*$') and '' or string.match(
 
 HOME = "/"
 SHELL = topshell and topshell.getRunningProgram() or "/usr/bin/cash"
-PATH = topshell and string.gsub(topshell.path(), "%.:", "") or "/rom/programs:/rom/programs/fun:/rom/programs/rednet"
+PATH = topshell and string.gsub(topshell.path(), "%.:", "") or "/rom/programs:/rom/programs/fun:/rom/programs/rednet" PATH = PATH..settings.get("shell.append_path")
 USER = CCKernel2 and users.getShortName(users.getuid()) or "root"
 EDITOR = "edit"
 OLDPWD = topshell and topshell.dir() or "/"

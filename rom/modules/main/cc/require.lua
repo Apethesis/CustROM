@@ -130,7 +130,7 @@ local function make_package(env, dir)
         string = string,
         table = table,
     }
-    package.path = "?;?.lua;?/init.lua;/rom/modules/main/?;/rom/modules/main/?.lua;/rom/modules/main/?/init.lua"
+    package.path = "?;?.lua;?/init.lua;/rom/modules/main/?;/rom/modules/main/?.lua;/rom/modules/main/?/init.lua"..(settings and settings.get("shell.append_path") or "")
     if turtle then
         package.path = package.path .. ";/rom/modules/turtle/?;/rom/modules/turtle/?.lua;/rom/modules/turtle/?/init.lua"
     elseif commands then
